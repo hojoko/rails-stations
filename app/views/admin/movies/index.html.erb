@@ -10,6 +10,7 @@
       <td>画像URL</td>
       <td>作成日時</td>
       <td>更新日時</td>
+      <td>操作</td>
     </tr>
   </thead>
   <tbody>
@@ -20,9 +21,10 @@
         <td><%= movie.year %></td>
         <td><%= "上映中" if movie.is_showing == 1 %><%= "上映予定" if movie.is_showing == 0 %></td>
         <td><%= simple_format(movie.description) %></td>
-        <td><%= image_tag movie.image_url %></td>
+        <td><%= link_to movie.image_url, movie.image_url %></td>
         <td><%= movie.created_at %></td>
-        <td><%= movie.updated_at %></td>       
+        <td><%= movie.updated_at %></td> 
+        <td><%= link_to "削除", admin_movie_path(movie), method: "delete", data: {confirm: "本当に削除しますか？"} %></td>      
       </tr>
       
     <% end %>
