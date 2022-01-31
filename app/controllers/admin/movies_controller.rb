@@ -3,6 +3,10 @@ class Admin::MoviesController < ApplicationController
     @movies = Movie.all
   end
 
+  def show
+    @movie = Movie.find(params[:id])
+  end
+
   def new
     @movie = Movie.new
   end  
@@ -15,6 +19,31 @@ class Admin::MoviesController < ApplicationController
     else
       flash[:alert] = "作成できませんでした"
       render :new
+    end
+  end
+
+  def edit
+    @movie = Movie.find(params[:id])  
+  end
+
+  def update    
+    @movie = Movie.find(params[:id])
+    if @movie.update(movie_params)
+      flash[:notice] = "更新しました"
+      redirect_to admin_movies_path
+    else
+      flash[:alert] = "更新できませんでした"
+      render :edit
+    end
+  end
+
+  def destroy
+    @movie = Movie.find(params[:id])
+    if @movie.destroy
+      redirect_to admin_movies_path, alert: "削除しました"
+    else
+      flash.now[:alert] = "削除できませんでした"
+      redirect_to admin_movies_path
     end
   end
 
