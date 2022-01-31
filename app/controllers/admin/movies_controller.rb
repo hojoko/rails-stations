@@ -28,11 +28,15 @@ class Admin::MoviesController < ApplicationController
 
   def update    
     @movie = Movie.find(params[:id])
+    puts "---------------------"
+    puts movie_params
+    puts "---------------------"
     if @movie.update(movie_params)
       flash[:notice] = "更新しました"
+      binding.pry
       redirect_to admin_movies_path
     else
-      flash[:alert] = "更新できませんでした"
+      flash[:alert] = "#{@movie.errors.full_messages.join('\n')}"
       render :edit
     end
   end

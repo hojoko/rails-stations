@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_09_100901) do
+ActiveRecord::Schema.define(version: 2022_01_15_072920) do
 
   create_table "movies", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 2022_01_09_100901) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "year"
     t.string "description"
-    t.boolean "is_showing", default: false, null: false
+    t.integer "is_showing", default: 0, null: false
   end
 
 end

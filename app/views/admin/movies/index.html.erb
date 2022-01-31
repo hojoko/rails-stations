@@ -18,11 +18,11 @@
         <td><%= movie.id %></td>
         <td><%= link_to movie.name, admin_movie_path(movie) %></td>
         <td><%= movie.year %></td>
-        <td><%= movie.is_showing ? "上映中" : "上映予定" %></td>
+        <td><%= "上映中" if movie.is_showing == 1 %><%= "上映予定" if movie.is_showing == 0 %></td>
         <td><%= simple_format(movie.description) %></td>
         <td><%= image_tag movie.image_url %></td>
         <td><%= movie.created_at %></td>
-        <td><%= movie.updated_at %></td>
+        <td><%= movie.updated_at %></td>       
       </tr>
       
     <% end %>
