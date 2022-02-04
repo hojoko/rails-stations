@@ -1,5 +1,5 @@
 <%= form_with url: movies_path, method: :get do |f| %>
-  <%= f.text_field :word %>
+  <%= f.text_field :keyword %>
   <%= f.submit '検索' %>
 
  <%= f.label :is_showing, 'すべて', value: "" %>
