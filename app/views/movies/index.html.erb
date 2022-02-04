@@ -1,6 +1,38 @@
-<% @movies.each do |movie| %>
-  <div>
-    <%= movie.name %>
-    <%= movie.image_url %>
-  </div>
+<%= form_with url: movies_path, method: :get do |f| %>
+  <%= f.text_field :word %>
+  <%= f.submit '検索' %>
+
+ <%= f.label :is_showing, 'すべて', value: "" %>
+ <%= f.radio_button :is_showing, "" %>
+ <%= f.label :is_showing, '公開中', value: '1' %>
+ <%= f.radio_button :is_showing, 1 %>
+ <%= f.label :is_showing, '公開予定', value: '0' %>
+ <%= f.radio_button :is_showing, 0 %>
 <% end %>
+
+<table>
+  <thead>
+    <tr>
+      <td>ID</td>
+      <td>映画タイトル</td>
+      <td>公開年</td>
+      <td>上映中か</td>
+      <td>概要</td>
+      <td>画像URL</td>
+    </tr>
+  </thead>
+  <tbody>
+    <% @movies.each do |movie| %>
+      <tr>
+        <td><%= movie.id %></td>
+        <td><%= link_to movie.name, admin_movie_path(movie) %></td>
+        <td><%= movie.year %></td>
+        <td><%= "上映中" if movie.is_showing == 1 %><%= "上映予定" if movie.is_showing == 0 %></td>
+        <td><%= simple_format(movie.description) %></td>
+        <td><%= link_to movie.image_url, movie.image_url %></td>
+      </tr>
+      
+    <% end %>
+  </tbody>
+
+</table>
