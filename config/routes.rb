@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  get '/movies' => 'movies#index'
+  get 'sheets', to: 'sheets#index' 
+  get '/movies', to: 'movies#index'
   namespace :admin do
     resources :movies
   end

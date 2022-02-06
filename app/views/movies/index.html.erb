@@ -1,13 +1,18 @@
 <%= form_with url: movies_path, method: :get do |f| %>
-  <%= f.text_field :keyword %>
+  <%= f.text_field :keyword, value: params[:keyword] %>
   <%= f.submit '検索' %>
-
- <%= f.label :is_showing, 'すべて', value: "" %>
- <%= f.radio_button :is_showing, "" %>
- <%= f.label :is_showing, '公開中', value: '1' %>
- <%= f.radio_button :is_showing, 1 %>
- <%= f.label :is_showing, '公開予定', value: '0' %>
- <%= f.radio_button :is_showing, 0 %>
+ <div>
+  <%= f.label :is_showing, 'すべて', value: "" %>
+  <%= f.radio_button :is_showing, "" %>
+ </div>
+ <div>
+  <%= f.label :is_showing, '上映中', value: '1' %>
+  <%= f.radio_button :is_showing, 1, checked: params[:is_showing]&.include?("1") %>
+ </div>
+ <div>
+  <%= f.label :is_showing, '上映予定', value: '0' %>
+  <%= f.radio_button :is_showing, 0, checked: params[:is_showing]&.include?("0") %>
+ </div>
 <% end %>
 
 <table>
