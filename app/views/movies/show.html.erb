@@ -1,0 +1,10 @@
+<div><%= @movie.name %></div>
+<div><%= @movie.year %></div>
+<div><%= @movie.description %></div>
+<div><%= image_tag @movie.image_url %></div>
+
+<div>上映スケジュール</div>
+<% @schedules.each do |schedule| %>
+  <div><%= schedule.start_time %></div>
+  <div><%= schedule.end_time %></div>
+<% end %>

@@ -1,4 +1,5 @@
 class Movie < ApplicationRecord
+  has_many :schedules, dependent: :destroy
   validates :name, presence: true, uniqueness: true
   validates :image_url, presence: true 
   validates :year, presence: true, length: { is: 4 }
