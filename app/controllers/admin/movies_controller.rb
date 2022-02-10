@@ -14,10 +14,9 @@ class Admin::MoviesController < ApplicationController
   def create
     @movie = Movie.new(movie_params)
     if @movie.save
-      flash[:notice] = "作成しました"
-      redirect_to admin_movies_path
+      redirect_to admin_movies_path, notice: "作成しました"
     else
-      flash[:alert] = "作成できませんでした"
+      flash.now[:alert] = "作成できませんでした"
       render :new
     end
   end
@@ -29,10 +28,9 @@ class Admin::MoviesController < ApplicationController
   def update    
     @movie = Movie.find(params[:id])
     if @movie.update(movie_params)
-      flash[:notice] = "更新しました"
-      redirect_to admin_movies_path
+      redirect_to admin_movies_path, notice: "更新しました"
     else
-      flash[:alert] = "更新できませんでした"
+      flash.now[:alert] = "更新できませんでした"
       render :edit
     end
   end
@@ -42,8 +40,7 @@ class Admin::MoviesController < ApplicationController
     if @movie.destroy
       redirect_to admin_movies_path, alert: "削除しました"
     else
-      flash.now[:alert] = "削除できませんでした"
-      redirect_to admin_movies_path
+      redirect_to admin_movies_path, alert: "削除できませんでした"
     end
   end
 

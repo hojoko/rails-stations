@@ -1,0 +1,27 @@
+<div>上映一覧</div>
+<div><%= link_to "New", new_admin_schedule_path %></div>
+
+<table>
+  <thead>
+    <tr>
+      <td><h2>ID</h2></td>
+      <td><h2>映画名</h2></td>
+      <td><h2>開始時間</h2></td>
+      <td><h2>終了時間</h2></td>
+      <td><h2>作成日時</h2></td>
+      <td><h2>更新日時</h2></td>
+    </tr>
+  </thead>
+  <tbody>
+    <% @schedules.each do |schedule| %>
+    <tr>
+      <td><%= link_to schedule.id, admin_schedule_path(schedule) %></td>
+      <td><%= Movie.find_by(id: schedule.movie_id).name %></td>
+      <td><%= l schedule.start_time %></td>
+      <td><%= l schedule.end_time %></td>
+      <td><%= l schedule.created_at %></td>
+      <td><%= l schedule.updated_at %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

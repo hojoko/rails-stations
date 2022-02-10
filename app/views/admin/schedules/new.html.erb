@@ -1,0 +1,13 @@
+<div>上映情報登録</div>
+<%= form_with model: [:admin, @schedule] do |f| %>
+  <div><%= f.label :movie_id, '上映画ID' %></div>
+  <div><%= f.number_field :movie_id %></div>
+
+  <div><%= f.label :start_time, '上映開始時間' %></div>
+  <div><%= f.datetime_field :start_time %></div>
+
+  <div><%= f.label :end_time, '上映終了時間' %></div>
+  <div><%= f.datetime_field :end_time %></div>
+
+  <div><%= f.submit "Save" %></div>
+<% end %>
